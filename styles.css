@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#game-container {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hand p {
+    margin: 0;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#buttons {
+    margin-top: 20px;
+}
+
+#buttons button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+#buttons button:disabled {
+    background-color: #ccc;
+    color: #666;
+}
