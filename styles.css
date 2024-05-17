@@ -5,6 +5,30 @@ body {
     color: #fff;
 }
 
+#play-screen {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #4a4a4a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#play-button {
+    font-size: 24px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+}
+
 #game-container {
     margin: 0 auto;
     max-width: 600px;
