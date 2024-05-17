@@ -4,8 +4,10 @@ const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
 let deck = [];
 let dealerHand = [];
 let playerHand = [];
+let playerHands = [[]];
 
 function createDeck() {
+    deck = [];
     for (let suit of suits) {
         for (let value of values) {
             deck.push({ suit, value });
@@ -21,24 +23,36 @@ function shuffleDeck() {
 }
 
 function deal() {
+    createDeck();
+    shuffleDeck();
     dealerHand = [];
     playerHand = [];
+    playerHands = [[]];
+
     for (let i = 0; i < 2; i++) {
         playerHand.push(deck.pop());
     }
-    playerHands.push([...playerHand]);
+    playerHands[0] = playerHand;
+
     for (let i = 0; i < 2; i++) {
         dealerHand.push(deck.pop());
     }
+    
     renderHands();
     enableButtons();
 }
 
 function renderHands() {
-    document.getElementById('dealer-hand').innerHTML = `<p>Dealer:</p><p>${dealerHand[0].value} of ${dealerHand[0].suit}</p>`;
-    document.getElementById('player-hand').innerHTML = `<p>Player:</p>`;
+    const dealerHandDiv = document.getElementById('dealer-hand');
+    const playerHandDiv = document.getElementById('player-hand');
+    
+    dealerHandDiv.innerHTML = `<p>Dealer:</p>`;
+    dealerHandDiv.innerHTML += `<img src="assets/${dealerHand[0].value.toLowerCase()}_of_${dealerHand[0].suit.toLowerCase()}.png" alt="${dealerHand[0].value} of ${dealerHand[0].suit}">`;
+    dealerHandDiv.innerHTML += `<img src="assets/back_of_card.png" alt="Back of card">`;
+
+    playerHandDiv.innerHTML = `<p>Player:</p>`;
     for (let card of playerHands[currentHandIndex()]) {
-        document.getElementById('player-hand').innerHTML += `<p>${card.value} of ${card.suit}</p>`;
+        playerHandDiv.innerHTML += `<img src="assets/${card.value.toLowerCase()}_of_${card.suit.toLowerCase()}.png" alt="${card.value} of ${card.suit}">`;
     }
 }
 
@@ -54,7 +68,7 @@ function stand() {
         return;
     }
 
-    document.getElementById('dealer-hand').innerHTML += `<p>${dealerHand[1].value} of ${dealerHand[1].suit}</p>`;
+    document.getElementById('dealer-hand').innerHTML += `<img src="assets/${dealerHand[1].value.toLowerCase()}_of_${dealerHand[1].suit.toLowerCase()}.png" alt="${dealerHand[1].value} of ${dealerHand[1].suit}">`;
     while (calculateHandValue(dealerHand) < 17) {
         dealerHand.push(deck.pop());
     }
@@ -142,4 +156,3 @@ document.getElementById('split-button').addEventListener('click', split);
 
 createDeck();
 shuffleDeck();
-renderHands();
