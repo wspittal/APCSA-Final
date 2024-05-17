@@ -6,7 +6,6 @@ let dealerHand = [];
 let playerHand = [];
 let playerHands = [[]];
 
-// Add event listener for the play button
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('play-button').addEventListener('click', () => {
         document.getElementById('play-screen').style.display = 'none';
@@ -64,12 +63,12 @@ function renderHands() {
     const playerHandDiv = document.getElementById('player-hand');
     
     dealerHandDiv.innerHTML = `<p>Dealer:</p>`;
-    dealerHandDiv.innerHTML += `<img src="assets/${dealerHand[0].value.toLowerCase()}_of_${dealerHand[0].suit.toLowerCase()}.png" alt="${dealerHand[0].value} of ${dealerHand[0].suit}">`;
-    dealerHandDiv.innerHTML += `<img src="assets/back_of_card.png" alt="Back of card">`;
+    dealerHandDiv.innerHTML += `<img src="${dealerHand[0].value.toLowerCase()}_of_${dealerHand[0].suit.toLowerCase()}.png" alt="${dealerHand[0].value} of ${dealerHand[0].suit}">`;
+    dealerHandDiv.innerHTML += `<img src="back_of_card.png" alt="Back of card">`;
 
     playerHandDiv.innerHTML = `<p>Player:</p>`;
     for (let card of playerHands[currentHandIndex()]) {
-        playerHandDiv.innerHTML += `<img src="assets/${card.value.toLowerCase()}_of_${card.suit.toLowerCase()}.png" alt="${card.value} of ${card.suit}">`;
+        playerHandDiv.innerHTML += `<img src="${card.value.toLowerCase()}_of_${card.suit.toLowerCase()}.png" alt="${card.value} of ${card.suit}">`;
     }
 }
 
@@ -85,7 +84,7 @@ function stand() {
         return;
     }
 
-    document.getElementById('dealer-hand').innerHTML += `<img src="assets/${dealerHand[1].value.toLowerCase()}_of_${dealerHand[1].suit.toLowerCase()}.png" alt="${dealerHand[1].value} of ${dealerHand[1].suit}">`;
+    document.getElementById('dealer-hand').innerHTML += `<img src="${dealerHand[1].value.toLowerCase()}_of_${dealerHand[1].suit.toLowerCase()}.png" alt="${dealerHand[1].value} of ${dealerHand[1].suit}">`;
     while (calculateHandValue(dealerHand) < 17) {
         dealerHand.push(deck.pop());
     }
@@ -165,3 +164,21 @@ function enableButtons() {
     document.getElementById('stand-button').disabled = false;
     document.getElementById('split-button').disabled = false;
 }
+
+function dealerTurn() {
+  
+}
+
+document.getElementById('deal-button').addEventListener('click', deal);
+document.getElementById('hit-button').addEventListener('click', hit);
+document.getElementById('stand-button').addEventListener('click', stand);
+document.getElementById('split-button').addEventListener('click', split);
+
+document.getElementById('play-button').addEventListener('click', () => {
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+});
+
+createDeck();
+shuffleDeck();
+renderHands();
