@@ -6,9 +6,21 @@ let dealerHand = [];
 let playerHand = [];
 let playerHands = [[]];
 
-document.getElementById('play-button').addEventListener('click', () => {
-    document.getElementById('play-screen').style.display = 'none';
-    document.getElementById('game-container').style.display = 'block';
+// Add event listener for the play button
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('play-button').addEventListener('click', () => {
+        document.getElementById('play-screen').style.display = 'none';
+        document.getElementById('game-container').style.display = 'block';
+    });
+
+    document.getElementById('deal-button').addEventListener('click', deal);
+    document.getElementById('hit-button').addEventListener('click', hit);
+    document.getElementById('stand-button').addEventListener('click', stand);
+    document.getElementById('split-button').addEventListener('click', split);
+
+    createDeck();
+    shuffleDeck();
+    renderHands();
 });
 
 function createDeck() {
@@ -153,5 +165,3 @@ function enableButtons() {
     document.getElementById('stand-button').disabled = false;
     document.getElementById('split-button').disabled = false;
 }
-
-document.getElementBy
