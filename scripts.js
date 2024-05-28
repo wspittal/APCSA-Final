@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('deal-button').addEventListener('click', deal);
     document.getElementById('hit-button').addEventListener('click', hit);
     document.getElementById('stand-button').addEventListener('click', stand);
-    document.getElementById('player-hand').innerHTML = `<p>Player:</p><div class="hand-info">0</div>`;
+    document.getElementById('player-hand').innerHTML = `<p>Player:</p><div class="hand-info"></div>`;
 
     createDeck();
     shuffleDeck();
